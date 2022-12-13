@@ -1,17 +1,17 @@
-import { useCallback } from "react";
+import { memo, useMemo, useCallback } from "react";
 import useCounter from "../hooks/useCounter";
 
 const Counter = () => {
     const {count, setCount, increment, decrement} = useCounter(1);
 
-    const handleInputChange = useCallback( (event) => {
+    const handleInputChange = useCallback((event) => {
         setCount(+event.target.value);
         if (+event.target.value < 1){
             setCount(1);
         };
     }, []);
 
-    const isDisabledButton = (count <= 1);
+    const isDisabledButton = useMemo(() => {return count <= 1}, [count]);
 
     return(
         <div>
@@ -22,4 +22,4 @@ const Counter = () => {
     )
 };
 
-export default Counter;
+export default memo(Counter);
