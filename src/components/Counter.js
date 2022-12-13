@@ -11,7 +11,7 @@ const Counter = () => {
     return(
         <div>
             <button onClick={decrement} disabled={isDisabledButton}>-</button>
-            <input type="number" onInpt={handleInputChange} value={count}></input>
+            <input type="number" onInput={handleInputChange} value={count}></input>
             <button onClick={increment}>+</button>
             <p>{count}</p>
         </div>
