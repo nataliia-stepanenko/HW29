@@ -11,11 +11,12 @@ const initialValue = 1;
 const Counter = () => {
     const {count, setCount, increment, decrement} = useCounter(initialValue);
 
-    const handleInputChange = useCallback ( (event) => {
-        setCount(+event.target.value);
-        if ( event.target.value !== "" && event.target.value < initialValue ){
-            setCount(1);
+    const handleInputChange = useCallback ( ({target: {value}}) => {
+        if ( value !== "" && value < initialValue ){
+            setCount(initialValue);
+            return;
         };
+        setCount(+value);
     }, []);
 
     const isDisabledButton = (count <= initialValue);
